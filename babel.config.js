@@ -20,7 +20,15 @@ module.exports = function exports(api) {
           debug: NODE_ENV === 'production'
         }
       ],
+      [
+        '@babel/preset-typescript',
+        {
+          allExtensions: true,
+          isTSX: true
+        }
+      ],
       '@babel/preset-react'
-    ]
+    ],
+    plugins: ['emotion']
   };
 };
