@@ -1,0 +1,12 @@
+{
+  "name": "test_repo",
+  "version": "1.0.0",
+  "description": "This is repo for some tests",
+  "main": "index.js",
+  "repository": "https://github.com/SMoshkin/test_repo.git",
+  "author": "Sergey Moshkin <myxmail@yandex.ru>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "2.1.2"
+  }
+}
