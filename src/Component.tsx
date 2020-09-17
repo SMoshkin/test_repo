@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Transition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
+import { css } from '@emotion/core';
 
 const Wrapper = styled.div`
   width: 500px;
@@ -13,24 +14,21 @@ type AnimationProp = {
   state: TransitionStatus;
 };
 
+const condition = {
+  entering: 0,
+  entered: 1,
+  exiting: 0,
+  exited: 0,
+  unmounted: 0
+};
+
 const Animation = styled.div<AnimationProp>`
-  transition: 0.5s;
   width: 300px;
   height: 200px;
-  transform: translateX(${({ state }) => (state === 'entering' ? 400 : 0)}px);
+  transition: opacity 0.3s ease-in-out;
+  opacity: ${({ state }) => condition[state] || 0};
 
-  background: ${({ state }) => {
-    switch (state) {
-      case 'entering':
-        return 'red';
-      case 'entered':
-        return 'blue';
-      case 'exiting':
-        return 'green';
-      case 'exited':
-        return 'yellow';
-    }
-  }};
+  background: black;
 `;
 
 export function Component() {
@@ -38,11 +36,13 @@ export function Component() {
 
   return (
     <Wrapper>
-      <div onClick={() => setAnimate(true)}>Click</div>
+      <div onClick={() => setAnimate(!animate)}>Click</div>
       <Transition
         in={animate}
-        onEntered={() => setAnimate(false)}
-        timeout={500}
+        timeout={{ appear: 300, enter: 0, exit: 300 }}
+        appear
+        mountOnEnter
+        unmountOnExit
       >
         {state => {
           return <Animation state={state}>Hello</Animation>;
