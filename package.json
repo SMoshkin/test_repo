@@ -7,7 +7,24 @@
   "author": "Sergey Moshkin <myxmail@yandex.ru>",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --hot"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "check-types": "tsc --noEmit",
+    "ts": "npm run check-types",
+    "lint": "npm run lint:js",
+    "lint:js": "eslint --color ./src --ext .js,.ts,.tsx",
+    "verify": "npm run ts && npm run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run check-types && npm run test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "@babel/preset-env": "7.11.5",
@@ -16,15 +33,20 @@
     "@emotion/core": "10.0.35",
     "@emotion/styled": "10.0.27",
     "@svgr/webpack": "5.4.0",
-    "@types/react": "16.9.49",
-    "@types/react-dom": "16.9.8",
+    "@types/react": "17.0.15",
+    "@types/react-dom": "17.0.9",
     "@types/react-transition-group": "4.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
     "babel-loader": "8.1.0",
     "babel-plugin-emotion": "10.0.33",
     "cross-env": "7.0.2",
     "css-loader": "4.3.0",
+    "eslint": "7.31.0",
+    "eslint-plugin-react": "7.24.0",
     "file-loader": "6.1.0",
     "html-webpack-plugin": "4.4.1",
+    "husky": "7.0.1",
     "prettier": "2.1.2",
     "style-loader": "1.2.1",
     "webpack": "4.44.1",
@@ -32,9 +54,12 @@
     "webpack-dev-server": "3.11.0"
   },
   "dependencies": {
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "install": "0.13.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "7.11.1",
     "react-transition-group": "4.4.1",
-    "typescript": "4.0.2"
+    "typescript": "4.3.5",
+    "yup": "0.32.9"
   }
 }

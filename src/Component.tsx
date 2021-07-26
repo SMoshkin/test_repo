@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import { Transition } from 'react-transition-group';
 import { TransitionStatus } from 'react-transition-group/Transition';
-import { css } from '@emotion/core';
+import { HookForm } from '@/HookForm';
 
 const Wrapper = styled.div`
   width: 500px;
@@ -48,6 +48,7 @@ export function Component() {
           return <Animation state={state}>Hello</Animation>;
         }}
       </Transition>
+      <HookForm />
     </Wrapper>
   );
 }

@@ -2,9 +2,9 @@
   "compilerOptions": {
     /* project options */
     "incremental": true,
-    "target": "ES2019",
-    "module": "ESNext",
-    "jsx": "react",
+    "target": "es2015",
+    "module": "esnext",
+    "jsx": "react-jsx",
     "outDir": "./.ts",
 
     /* module resolution */
@@ -21,6 +21,10 @@
 
     /* advanced */
     "skipLibCheck": true,
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "src/**/*",
+    "./*.js"
+  ]
 }
